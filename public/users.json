@@ -1,0 +1,57 @@
+[{
+  "_id": {
+    "$oid": "61bf8648acee18d4cf108ca5"
+  },
+  "username": "asds@assds.com",
+  "password": "$2a$10$nRCSPkFMFSJKoecDwNN1ju1yiuxxx5y.bLYzKC5Be2sgpFWXfzWE.",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bf89070d9a271dab63688c"
+  },
+  "username": "admin@admin.com",
+  "password": "$2a$10$LNLOtfDqrfDrGMWomezBmOMz3l3ckQ2SReeN5z4prjaz0vxb7dpSC",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bf89410d9a271dab636890"
+  },
+  "username": "admin2@admin2.com",
+  "password": "$2a$10$8dB5XkYipx1u7zwma4gf/uok1h6M/9pwwu7cuQCyR/3kRK8j.QRpO",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bf8a0a0d9a271dab636896"
+  },
+  "username": "admin@admin",
+  "password": "$2a$10$qRMDdkrBFFws8qPwn17aCOG7RK6WmnuJwpVNFgXP8s./oDL/W/xoq",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bf8a290d9a271dab63689a"
+  },
+  "username": "123@123",
+  "password": "$2a$10$T2Ck0ERXJRhKsEXTfDEtB.g9g0eB1LlqZ7z1Ix4/QGmWBXUy.ZF9i",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bf90bb0079c44a2eb12712"
+  },
+  "username": "erika@erika.com",
+  "password": "$2a$10$pou53dyy.6W9RHtibXr8MuYDSWczdXvMZwXGOx/1cKpiQBRvFeMle",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfdfaa5bf920ee9a635048"
+  },
+  "username": "leung@leung.com",
+  "password": "$2a$10$yrDX8hIfNkfHNEjsttfeFO.qVMBAhHworHfkIGF.u2ZYWCSh4fjB.",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bffc18edff5ade4f922b83"
+  },
+  "email": "admin@admin.com",
+  "password": "$2b$10$cGvkomJpB.y9XevZbemqvuKvag0qZ9LvvYVeZKNikevShXQMt9tnq",
+  "__v": 0
+}]

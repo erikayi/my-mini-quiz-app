@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Quiz</title>
+    <link href="../quiz.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const startButton = document.getElementById('start-btn')
+        const nextButton = document.getElementById('next-btn')
+        const questionContainerElement = document.getElementById('question-container')
+        const questionElement = document.getElementById('question')
+        const answerButtonsElement = document.getElementById('answer-buttons')
+        const submitButton = document.getElementById('submit-btn')
+
+        let shuffledQuestions, currentQuestionIndex
+
+        startButton.addEventListener('click', startQuiz)
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex++
+            setNextQuestion()
+        })
+
+        function startQuiz() {
+            const count = 15;
+            const interval = setInterval(() => {
+                document.getElementById('count').innerHTML = count;
+                count--; 
+                if (count === 0) {
+                    clearInterval(interval);
+                    alert("Quiz is finished, please submit the quiz.")
+                    // document.getElementById('count').innerHTML = "Submit the Quiz";
+                }
+            }, 1000);
+
+            startButton.classList.add('hide')
+            shuffledQuestions = questions.sort(() => Math.random() - .5)
+            currentQuestionIndex = 0
+            questionContainerElement.classList.remove('hide')
+            setNextQuestion()
+        }
+
+        function setNextQuestion() {
+            resetState()
+            showQuestion(shuffledQuestions[currentQuestionIndex])
+        }
+
+        function showQuestion(question) {
+            questionElement.innerText = question.question
+            question.answers.forEach(answer => {
+                const button = document.createElement('button')
+                button.innerText = answer.text
+                button.classList.add('btn')
+                if (answer.correct) {
+                    button.dataset.correct = answer.correct
+                }
+                button.addEventListener('click', selectAnswer)
+                answerButtonsElement.appendChild(button)
+            })
+        }
+
+        function resetState() {
+            clearStatusClass(document.body)
+            nextButton.classList.add('hide')
+            while (answerButtonsElement.firstChild) {
+                answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+            }
+        }
+
+        function selectAnswer(e) {
+            const selectedButton = e.target
+            const correct = selectedButton.dataset.correct
+            setStatusClass(document.body, correct)
+            Array.from(answerButtonsElement.children).forEach(button => {
+                setStatusClass(button, button.dataset.correct)
+            })
+            if (shuffledQuestions.length > currentQuestionIndex + 1) {
+                nextButton.classList.remove('hide')
+            } else {
+                startButton.innerText = 'Submit'
+                // submitButton.innerText = 'Submit'
+                startButton.classList.remove('hide')
+            }
+
+        }
+
+        function setStatusClass(element, correct) {
+            clearStatusClass(element)
+            if (correct) {
+                element.classList.add('correct')
+            } else {
+                element.classList.add('wrong')
+            }
+        }
+
+        function clearStatusClass(element) {
+            element.classList.remove('correct')
+            element.classList.remove('wrong')
+        }
+
+        const questions = [
+            {
+                question: 'What is HTML?',
+                answers: [
+                    { text: 'Answer A', correct: true },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: false },
+                    { text: 'Answer D', correct: false }
+                ]
+            },
+            {
+                question: 'What are tags?',
+                answers: [
+                    { text: 'Answer A', correct: false },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: true },
+                    { text: 'Answer D', correct: false }
+                ]
+            },
+            {
+                question: 'What are some of the common lists that can be used when designing a page?',
+                answers: [
+                    { text: 'Answer A', correct: false },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: false },
+                    { text: 'Answer D', correct: true }
+                ]
+            },
+            {
+                question: 'How do you create multicolored text in a webpage?',
+                answers: [
+                    { text: 'Answer A', correct: true },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: false },
+                    { text: 'Answer D', correct: false }
+                ]
+            },
+            {
+                question: 'State bullet types available in HTML?',
+                answers: [
+                    { text: 'Answer A', correct: false },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: true },
+                    { text: 'Answer D', correct: false }
+                ]
+            },
+            {
+                question: 'Which browsers support HTML5?',
+                answers: [
+                    { text: 'Answer A', correct: false },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: false },
+                    { text: 'Answer D', correct: true }
+                ]
+            },
+            {
+                question: 'What is <figure> in HTML5?',
+                answers: [
+                    { text: 'Answer A', correct: false },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: true },
+                    { text: 'Answer D', correct: false }
+                ]
+            },
+            {
+                question: 'Tell me two benefits of HTML5 Web Storage.',
+                answers: [
+                    { text: 'Answer A', correct: false },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: true },
+                    { text: 'Answer D', correct: false }
+                ]
+            },
+            {
+                question: 'What are two types of Web Storage in HTML5?',
+                answers: [
+                    { text: 'Answer A', correct: false },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: true },
+                    { text: 'Answer D', correct: false }
+                ]
+            },
+            {
+                question: 'What is the use of Canvas element?',
+                answers: [
+                    { text: 'Answer A', correct: true },
+                    { text: 'Answer B', correct: false },
+                    { text: 'Answer C', correct: false },
+                    { text: 'Answer D', correct: false }
+                ]
+            }
+        ]
+    </script>
+
+</body>
+
+</html>

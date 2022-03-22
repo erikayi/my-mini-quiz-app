@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+
+    <!-- jQuery script  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- popper.js script  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+
+    <!-- Json File for Local -->
+    <script type="text/javascript" src="../users.json"></script>
+
+    <!-- Stylesheet on Local Drive -->
+    <link rel="stylesheet" type="text/css" href="../style.css">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+    <%- include('partials/header') -%>
+
+    <form>
+
+        <div class="formClass">
+
+            <div>
+                <h3>Admin Page To See All Registered Users, Scores, Feedback, and Emails</h3>
+            </div>
+
+            <div class="d-grid gap-2 col-1 mx-auto">
+                <button type="button" class="btn btn-info">Click to Load Content</button>
+            </div>
+
+            <br>
+
+            <table class="table-success">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Results</th>
+                        <th>Times</th>
+                        <th>Feedback</th>
+                    </tr>
+                </thead>
+                <tbody id="result">
+                </tbody>
+            </table>
+
+        </div>
+
+    </form>
+
+    <%- include('partials/footer') -%>
+
+    <script>
+
+        let data = [{
+            "_id": {
+                "$oid": "61bf8648acee18d4cf108ca5"
+            },
+            "username": "asds@assds.com",
+            "password": "$2a$10$nRCSPkFMFSJKoecDwNN1ju1yiuxxx5y.bLYzKC5Be2sgpFWXfzWE.",
+            "__v": 0
+        }, {
+            "_id": {
+                "$oid": "61bf89070d9a271dab63688c"
+            },
+            "username": "admin@admin.com",
+            "password": "$2a$10$LNLOtfDqrfDrGMWomezBmOMz3l3ckQ2SReeN5z4prjaz0vxb7dpSC",
+            "__v": 0
+        }, {
+            "_id": {
+                "$oid": "61bf89410d9a271dab636890"
+            },
+            "username": "admin2@admin2.com",
+            "password": "$2a$10$8dB5XkYipx1u7zwma4gf/uok1h6M/9pwwu7cuQCyR/3kRK8j.QRpO",
+            "__v": 0
+        }, {
+            "_id": {
+                "$oid": "61bf8a0a0d9a271dab636896"
+            },
+            "username": "admin@admin",
+            "password": "$2a$10$qRMDdkrBFFws8qPwn17aCOG7RK6WmnuJwpVNFgXP8s./oDL/W/xoq",
+            "__v": 0
+        }, {
+            "_id": {
+                "$oid": "61bf8a290d9a271dab63689a"
+            },
+            "username": "123@123",
+            "password": "$2a$10$T2Ck0ERXJRhKsEXTfDEtB.g9g0eB1LlqZ7z1Ix4/QGmWBXUy.ZF9i",
+            "__v": 0
+        }, {
+            "_id": {
+                "$oid": "61bf90bb0079c44a2eb12712"
+            },
+            "username": "erika@erika.com",
+            "password": "$2a$10$pou53dyy.6W9RHtibXr8MuYDSWczdXvMZwXGOx/1cKpiQBRvFeMle",
+            "__v": 0
+        }, {
+            "_id": {
+                "$oid": "61bfdfaa5bf920ee9a635048"
+            },
+            "username": "leung@leung.com",
+            "password": "$2a$10$yrDX8hIfNkfHNEjsttfeFO.qVMBAhHworHfkIGF.u2ZYWCSh4fjB.",
+            "__v": 0
+        }, {
+            "_id": {
+                "$oid": "61bffc18edff5ade4f922b83"
+            },
+            "email": "admin@admin.com",
+            "password": "$2b$10$cGvkomJpB.y9XevZbemqvuKvag0qZ9LvvYVeZKNikevShXQMt9tnq",
+            "__v": 0
+        }]
+
+        let mydata = JSON.parse(data);
+
+        $(document).ready(function () {
+            const $result = $("#result");
+            $("button").click(function () {
+                $.get(mydata, function (data) {
+                    // console.log(data);
+                    $result.html(
+                        data.map(item => `<tr><td>${item._id}</td><td>${item.username}</td>`)
+                        // data.map(item => `<tr><td>${item._id}</td><td>${item.email}</td>
+                        //             <td>${item.results}</td><td>${item.times}</td
+                        //                 <td>${item.feedback}</td></tr>`)
+                    );
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
